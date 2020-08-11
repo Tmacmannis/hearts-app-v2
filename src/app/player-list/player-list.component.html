@@ -1,0 +1,61 @@
+
+<br>
+<br>
+
+<button type="button" class="btn btn-primary" (click)="newPlayer()">Add Player</button>
+<br>
+<br>
+<input [(ngModel)]="playerName" style="width: 25%;" type="text" class="form-control" placeholder="Player Name">
+<br>
+<br>
+<br>
+<br>
+<table>
+    <thead >
+      
+    </thead>
+    <tbody>
+      <tr *ngFor="let player of staticPlayers">
+  
+        <td>{{player.name}}</td>
+        <td>{{player.score}}</td>
+        <td>
+            <button type="button" class="btn btn-secondary" (click)="delete(player.id)">Delete</button>
+        </td>
+        <td>
+          <input #name type="text" class="form-control" placeholder="Score">
+        </td>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="addPoint(player, name.value)">Add Point</button>
+          <button type="button" class="btn btn-warning" (click)="deleteRound(player)">Delete Last Round</button>
+        </td>
+      </tr>
+    </tbody>
+</table>
+<br><br>
+
+
+<table class="table">
+  <thead>
+    <tr >
+      <th style="width:100px;">Round #</th>
+      <th *ngFor="let player of players" scope="col">{{player.name}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let player of highestRound; let i = index">
+      <th>{{i + 1}}</th>
+      <th *ngFor="let player of players" scope="row" >{{player.scores[i]}}</th>
+    </tr>
+    <tr style="color: red; font-size: larger; font-weight: bold;">
+      <th>Totals</th>
+      <th *ngFor="let player of players" scope="row">{{player.totalScore}}</th>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+

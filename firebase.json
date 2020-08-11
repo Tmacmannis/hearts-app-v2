@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/hearts-app-v2",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
