@@ -32,6 +32,7 @@ export class PlayerListComponent implements OnInit {
 
 
   playerName: string;
+  buttonBoolean: Boolean = false;
 
   ngOnInit() {
 
@@ -157,6 +158,18 @@ export class PlayerListComponent implements OnInit {
       },1000);
     }
     // window.location.reload() 
+  }
+
+  roundSum(round: number){
+    let sum = 0;
+    for(let player of this.players){
+      sum = sum + player.scores[round];
+    }
+    return sum;
+  }
+
+  hideButtons(){
+    this.buttonBoolean = !this.buttonBoolean;
   }
 
 }

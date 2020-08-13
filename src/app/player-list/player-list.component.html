@@ -1,16 +1,17 @@
 
 <br>
 <br>
-
-<button type="button" class="btn btn-primary" (click)="newPlayer()">Add Player</button>
+<button type="button" class="btn btn-primary" (click)="hideButtons()">Hide Buttons</button>
+<br><br>
+<button *ngIf="buttonBoolean" type="button" class="btn btn-primary" (click)="newPlayer()">Add Player</button>
 <br>
 <br>
-<input [(ngModel)]="playerName" style="width: 25%;" type="text" class="form-control" placeholder="Player Name">
+<input *ngIf="buttonBoolean" [(ngModel)]="playerName" style="width: 25%;" type="text" class="form-control" placeholder="Player Name">
 <br>
 <br>
 <br>
 <br>
-<table>
+<table *ngIf="buttonBoolean">
     <thead >
       
     </thead>
@@ -40,16 +41,18 @@
     <tr >
       <th style="width:100px;">Round #</th>
       <th *ngFor="let player of players" scope="col">{{player.name}}</th>
+      <th style="width:100px;">Round Totals</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let player of highestRound; let i = index">
-      <th>{{i + 1}}</th>
-      <th *ngFor="let player of players" scope="row" >{{player.scores[i]}}</th>
-    </tr>
     <tr style="color: red; font-size: larger; font-weight: bold;">
       <th>Totals</th>
       <th *ngFor="let player of players" scope="row">{{player.totalScore}}</th>
+    </tr>
+    <tr *ngFor="let player of highestRound; let i = index">
+      <th>{{i + 1}}</th>
+      <th *ngFor="let player of players" scope="row" >{{player.scores[i]}}</th>
+      <th style="color: red; font-size: larger; font-weight: bold;">{{roundSum(i)}}</th>
     </tr>
   </tbody>
 </table>
